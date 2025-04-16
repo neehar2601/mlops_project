@@ -1,12 +1,28 @@
-FROM python:3.12
+#FROM python:3.12
+
+#WORKDIR /flask_app
+
+#COPY requirements.txt .
+
+#RUN pip install --upgrade pip
+
+#RUN pip install --no-cache-dir -r requirements.txt
+
+#COPY app/ .
+
+#COPY tests/ app/tests/
+
+#CMD mlflow server --host 0.0.0.0 --port 8000 & \
+ #   python app.py
+ FROM python:3.12
 
 WORKDIR /flask_app
 
 COPY requirements.txt .
 
-RUN pip install --upgrade pip
-
-RUN pip install --no-cache-dir -r requirements.txt
+# Upgrade pip and install required packages including setuptools
+RUN pip install --upgrade pip setuptools && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY app/ .
 
